@@ -30,6 +30,8 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'org.modelmapper:modelmapper:2.4.2'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	implementation 'javax.servlet:jstl:1.2'
 }
 
 tasks.withType(KotlinCompile) {

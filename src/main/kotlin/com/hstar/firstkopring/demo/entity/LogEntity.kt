@@ -4,7 +4,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = "logs")
-class LogEntity(
+data class LogEntity(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long = 0,
@@ -12,12 +12,15 @@ class LogEntity(
         var packageName: String = "",
         @Column(name = "version")
         val version: String = "",
-        @Column(name = "error_body")
+        @Embedded
         val errorBody: ErrorBody
+
+
 ) {
     constructor(): this(packageName = "", version = "", errorBody = ErrorBody())    //TODO: jpa 에서 사용하려면 기본생성자를 추가해야하는지 확인?
-}
 
+}
+@Embeddable
 data class ErrorBody(
         @Column(name = "create_at")      // 발생 시간
         val createAt: String? = null,
@@ -26,6 +29,5 @@ data class ErrorBody(
         @Column(name = "caused_at")     // 발생 지점(함수명..)
         val causedAt: String? = null,
         @Column(name = "extra_data")     // 발생 지점(함수명..)
-        val extraData: Any? = null,
+        val extraData: String? = null,
 )
-
