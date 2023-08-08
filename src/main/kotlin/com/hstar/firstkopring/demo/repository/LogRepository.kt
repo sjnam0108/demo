@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface LogRepository : JpaRepository<LogEntity, Any> {
     //TODO: jpa형식으로 생성!! ex) findByPackageName
-    fun findErrorByCreatAt(createAt: String): LogEntity?
+
 }
