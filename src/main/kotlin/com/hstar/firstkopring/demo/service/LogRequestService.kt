@@ -3,6 +3,7 @@ package com.hstar.firstkopring.demo.service
 
 import com.hstar.firstkopring.demo.dto.LogRequestDto
 import com.hstar.firstkopring.demo.repository.LogRequestRepository
+import com.hstar.firstkopring.demo.util.logger
 import jakarta.transaction.Transactional
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,12 +19,16 @@ class LogRequestService @Autowired constructor() {
     @Transactional
     fun save(logRequestDto: LogRequestDto): Long {
         println("LogRequest DTO : $logRequestDto")
+
+        val currentLogHistory = logRequestRepository.findByType("LogIn")
+        this.logger().info("Test DB list : $currentLogHistory")
+
         val target = with(logRequestDto) {
             createAt = Date()
             lastLoginAt = Date()
             this
         }
-        println("translated data : $target")
+        this@LogRequestService.logger().info("translated data : $target")
         return logRequestRepository.save(target.toEntity()).id
     }
 }
