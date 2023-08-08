@@ -18,7 +18,6 @@ class LogRequestController @Autowired constructor(val logRequestService: LogRequ
         println(logRequestDto)
         val save = logRequestService.save(logRequestDto)
         val res = ResResult(200, "OK", save != 0L)
- //       log.info("save result : $save")
         return ResponseEntity.ok().body(res)
     }
 
